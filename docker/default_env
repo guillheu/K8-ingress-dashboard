@@ -1,0 +1,3 @@
+export BIND_ADDR=0.0.0.0
+export HTML_DIR=/www/html
+export PORT=8080
