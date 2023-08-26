@@ -78,7 +78,7 @@
                                             <div v-else class="d-flex align-items-center">
                                                 <span>{{ ingress.rules[0].host }}</span>
                                                 <a class="btn btn-link p-0 ml-2" :data-bs-toggle="'collapse'" :href="'#collapsePathsSingleRule' + index" role="button" aria-expanded="false">
-                                                    Show
+                                                    Show paths
                                                 </a>
                                             </div>
                                         </div>
@@ -100,7 +100,7 @@
                                         <div class="d-flex align-items-center">
                                             <strong>Hosts: </strong>
                                             <a class="btn btn-link p-0 ml-2" :data-bs-toggle="'collapse'" :href="'#collapseHosts' + index" role="button" aria-expanded="false">
-                                                Show
+                                                Show hosts
                                             </a>
                                         </div>
                                         <div :class="'collapse'" :id="'collapseHosts' + index">
