@@ -10,23 +10,7 @@ app = FastAPI()
 
 
 # Static files directory
-app.mount("/static", StaticFiles(directory=CONFIG.get('HTML_DIR')), name="static")
-
-# Serve the static index.html page
-@app.get("/")
-def root():
-    return FileResponse(f"{CONFIG.get('HTML_DIR')}/index.html")
-
-# Serve the favicon
-@app.get("/favicon.ico")
-def root():
-    return FileResponse(f"{CONFIG.get('HTML_DIR')}/favicon.ico")
-
-# Serve the static ingresses.json file
-@app.get("/ingresses")
-def ingresses():
-    return FileResponse(f"{CONFIG.get('HTML_DIR')}/ingresses.json")
-
+app.mount("/", StaticFiles(directory=CONFIG.get('HTML_DIR')), name="static")
 
 # Function to run on startup
 @app.on_event("startup")

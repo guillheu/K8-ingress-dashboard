@@ -1,16 +1,17 @@
-# FROM node:20.5.1-alpine3.18 as build-frontend
+FROM node:20.5.1-alpine3.18 as build-frontend
 
-# COPY frontend/* /app
+RUN mkdir -p /app
 
-# WORKDIR /app
+COPY frontend/ /app/
 
-# RUN npm run build
+WORKDIR /app
 
-# RUN ls
+RUN npm install 
+
+RUN npm run build
 
 
-
-FROM python:3.10.12-alpine3.18
+FROM python:3.10.12-alpine3.18 as run
 
 COPY server/requirements.txt /python/requirements.txt
 
@@ -24,6 +25,6 @@ COPY docker/docker-entrypoint.sh /docker-entrypoint.sh
 
 COPY docker/default_env /default_env
 
-COPY frontend/* /www/html/
+COPY --from=build-frontend /app/dist/ /www/html/
 
 ENTRYPOINT /docker-entrypoint.sh
