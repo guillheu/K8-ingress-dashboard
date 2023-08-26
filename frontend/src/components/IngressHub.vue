@@ -158,10 +158,6 @@ const ingresses = ref([]);
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-                    
                     <div v-if="ingressClass.ingresses.length === 0" class="col-md-12 text-muted">
                         No ingresses
                     </div>
