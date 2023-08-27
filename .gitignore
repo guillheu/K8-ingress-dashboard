@@ -1,2 +1,4 @@
 temp/
 .cr-release-packages/
+*/Chart.lock
+*/charts
