@@ -71,7 +71,7 @@ function tlsStatus(ingress) {
                             </li>
                         </ul>
                     </div>
-                    <img v-if="ingress.rules[0].host_points_to_lb_ip === 'false'" src="@/assets/disconnect.png" alt="DNS record missing" width="30" height="30" />
+                    <img v-if="ingress.rules[0].host_points_to_lb_ip === 'false'" src="@/assets/disconnect.png" alt="DNS record missing" width="22" height="22" />
                 </div>
                 
                 
@@ -109,7 +109,7 @@ function tlsStatus(ingress) {
                                     <span v-else>
                                         {{ rule.host }}
                                     </span>
-                                    <img v-if="ingress.rules[0].host_points_to_lb_ip === 'false'" src="@/assets/disconnect.png" alt="DNS record missing" width="30" height="30" />
+                                    <img v-if="ingress.rules[0].host_points_to_lb_ip === 'false'" src="@/assets/disconnect.png" alt="DNS record missing" width="22" height="22" />
                                 </div>
                 
 
