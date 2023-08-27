@@ -1,5 +1,5 @@
 from kubernetes import client, watch
-from kubernetes_ingress import refresh_ingresses
+from kube_handlers.ingress import refresh_ingresses
 
 def watch_ingresses():
 
