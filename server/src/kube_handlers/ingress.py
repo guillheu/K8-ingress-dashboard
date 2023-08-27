@@ -3,6 +3,8 @@ from fnmatch import fnmatch
 import json
 
 from config import all_configs as CONFIG
+from net.hostnames import check_hostnames_for_ip
+from kube_handlers.match_hosts_to_ip import check_ingress_hostnames
 
 def extract_ingress_classes(api_instance):
     ingress_classes = api_instance.list_ingress_class()
@@ -44,6 +46,7 @@ def extract_ingresses(api_instance, ingress_classes_data):
             ingress_rule = {
                 'host': rule.host,
                 'tls': 'false',
+                'host_points_to_lb_ip': 'false',
                 'paths': []
             }
             for path in rule.http.paths:
@@ -74,9 +77,11 @@ def refresh_ingresses():
 
     ingress_classes_data, default_ingress_class = extract_ingress_classes(api_instance)
     extract_ingresses(api_instance, ingress_classes_data)
-
+    check_ingress_hostnames(ingress_classes_data)
     with open(f"{CONFIG.get('HTML_DIR')}/ingresses.json", 'w') as f:
         json.dump(ingress_classes_data, f)
+    
+
 
 
 def find_load_balancer_ip_by_ingress_class(ingress_class_name):

@@ -33,7 +33,7 @@ function tlsStatus(ingress) {
                         }">{{ tlsStatus(ingress) }}</span>
                     </div>
                 </div>
-                <div v-if="ingress.rules.length === 1">
+                <div v-if="ingress.rules.length === 1" class="d-flex align-items-center">
                     <div class="d-flex align-items-center">
                         <strong class="me-2">Host: </strong>
                         <span :class="{
@@ -49,6 +49,8 @@ function tlsStatus(ingress) {
                             <a :href="(ingress.rules[0].tls === 'true' ? 'https' : 'http') + '://' + ingress.rules[0].host + ingress.rules[0].paths[0]" target="_blank">
                                 {{ ingress.rules[0].host + ingress.rules[0].paths[0] }}
                             </a>
+
+                                    
                         </span>
                         
                         <div v-else class="d-flex align-items-center">
@@ -57,6 +59,7 @@ function tlsStatus(ingress) {
                                 Show paths
                             </a>
                         </div>
+                        
                     </div>
                 
                     <div v-if="ingress.rules[0].paths.length > 1" :class="'collapse'" :id="'collapsePathsSingleRule' + index">
@@ -68,6 +71,7 @@ function tlsStatus(ingress) {
                             </li>
                         </ul>
                     </div>
+                    <img v-if="ingress.rules[0].host_points_to_lb_ip === 'false'" src="@/assets/disconnect.png" alt="DNS record missing" width="30" height="30" />
                 </div>
                 
                 
@@ -82,6 +86,10 @@ function tlsStatus(ingress) {
                     <div :class="'collapse'" :id="'collapseHosts' + index">
                         <ul class="list-unstyled">
                             <li v-for="rule in ingress.rules">
+
+
+
+
                                 <div class="d-flex align-items-center">
                                     <span :class="{
                                         'badge': true,
@@ -101,8 +109,11 @@ function tlsStatus(ingress) {
                                     <span v-else>
                                         {{ rule.host }}
                                     </span>
+                                    <img v-if="ingress.rules[0].host_points_to_lb_ip === 'false'" src="@/assets/disconnect.png" alt="DNS record missing" width="30" height="30" />
                                 </div>
                 
+
+
                                 <ul v-if="rule.paths.length > 1" class="list-unstyled ml-4">
                                     <li v-for="path in rule.paths">
                                         <a :href="(rule.tls === 'true' ? 'https' : 'http') + '://' + rule.host + path" target="_blank">
