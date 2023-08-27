@@ -1,5 +1,7 @@
 FROM node:20.5.1-alpine3.18 as build-frontend
 
+RUN npm install -g vite
+
 RUN mkdir -p /app
 
 COPY frontend/ /app/
@@ -8,7 +10,8 @@ WORKDIR /app
 
 RUN npm install 
 
-RUN npm run build
+RUN vite build --base=/static/
+
 
 
 FROM python:3.10.12-alpine3.18 as run

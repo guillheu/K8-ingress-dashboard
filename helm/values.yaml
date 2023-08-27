@@ -4,7 +4,7 @@ deployment:
   replicaCount: 1
   image:
     repository: guillh/k8-ingress-hub
-    tag: 0.0.1
+    tag: 0.0.2
 
 
 app:

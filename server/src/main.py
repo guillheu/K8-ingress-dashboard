@@ -10,7 +10,15 @@ app = FastAPI()
 
 
 # Static files directory
-app.mount("/", StaticFiles(directory=CONFIG.get('HTML_DIR')), name="static")
+app.mount("/static", StaticFiles(directory=CONFIG.get('HTML_DIR')), name="static")
+
+@app.get("/")
+async def root():
+    return FileResponse(f"{CONFIG.get('HTML_DIR')}/index.html")
+
+@app.get("/ingresses.json")
+async def root():
+    return FileResponse(f"{CONFIG.get('HTML_DIR')}/ingresses.json")
 
 # Function to run on startup
 @app.on_event("startup")
