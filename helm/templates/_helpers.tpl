@@ -5,7 +5,7 @@
 
 {{/* Generate the name */}}
 {{- define "ingress-hub.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- default .Release.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end -}}
 
 {{/* Return the namespace of the release */}}
