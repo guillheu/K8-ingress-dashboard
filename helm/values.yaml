@@ -1,0 +1,18 @@
+replicaCount: 1
+
+app:
+  port: 8080
+  htmlDir: /www/html
+
+image:
+  repository: guillh/k8-ingress-hub
+  tag: 0.0.1
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: false
+  hostname: ingress-hub.example.io
+  tls: []
+  ingressClassName: ""

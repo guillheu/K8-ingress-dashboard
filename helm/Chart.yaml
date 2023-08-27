@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ingress-hub
+description: Dashboard for all ingresses in a kubernetes cluster
+type: application
+version: 0.1.0
+appVersion: "0.0.1"
