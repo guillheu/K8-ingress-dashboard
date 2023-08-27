@@ -2,8 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "ingress-hub.fullname" . }}
+  annotations:
+{{- toYaml .Values.deployment.annotations | nindent 4 }}
+  labels:
+{{- toYaml .Values.deployment.extraLabels | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.deployment.replicaCount }}
   selector:
     matchLabels:
       app: {{ include "ingress-hub.name" . }}
@@ -15,7 +19,7 @@ spec:
       serviceAccountName: {{ include "ingress-hub.fullname" . }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}"
           ports:
             - name: http
               containerPort: {{ .Values.app.port }}

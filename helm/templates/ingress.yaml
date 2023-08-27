@@ -3,6 +3,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "ingress-hub.fullname" . }}
+  annotations:
+{{- toYaml .Values.ingress.annotations | nindent 4 }}
+  labels:
+{{- toYaml .Values.ingress.extraLabels | nindent 4 }}
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
@@ -16,6 +20,10 @@ spec:
                 name: {{ include "ingress-hub.fullname" . }}
                 port:
                   number: 8080
+  {{- if .Values.ingress.tls.enabled }}
   tls:
-{{ toYaml .Values.ingress.tls | nindent 4}}
+    - hosts:
+      - {{ .Values.ingress.hostname }}
+      secretName: {{ default (printf "%s-tls" (include "ingress-hub.fullname" .)) .Values.ingress.tls.secretName }}
+  {{- end }}
 {{- end }}
