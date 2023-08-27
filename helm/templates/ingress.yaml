@@ -4,20 +4,18 @@ kind: Ingress
 metadata:
   name: {{ include "ingress-hub.fullname" . }}
 spec:
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ .host }}
+    - host: {{ .Values.ingress.hostname }}
       http:
         paths:
-        {{- range .paths }}
-          - path: {{ . }}
-            pathType: ImplementationSpecific
+          - path: /
+            pathType: Prefix
             backend:
               service:
-                name: {{ $fullName := include "ingress-hub.fullname" $ }}
-                name: {{ $fullName }}
+                name: {{ include "ingress-hub.fullname" . }}
                 port:
                   number: 8080
-        {{- end }}
-  {{- end }}
+  tls:
+{{ toYaml .Values.ingress.tls | nindent 4}}
 {{- end }}

@@ -3,6 +3,16 @@ entries:
   ingress-hub:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-08-27T19:35:22.298157228+02:00"
+    description: Dashboard for all ingresses in a kubernetes cluster
+    digest: ccf6fc13c117ed6c3b492a1f51f0d2ab5bce6d5505f5ef8f8276d372f8894c7f
+    name: ingress-hub
+    type: application
+    urls:
+    - https://github.com/guillheu/K8-ingress-hub/releases/download/ingress-hub-0.1.8/ingress-hub-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-08-27T19:20:39.384276841+02:00"
     description: Dashboard for all ingresses in a kubernetes cluster
     digest: 6f0b993508c0c4814d9a074fbd58bf6bbab5c9a51b947d58385a8c3757a5cad7
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/guillheu/K8-ingress-hub/releases/download/ingress-hub-0.1.3/ingress-hub-0.1.3.tgz
     version: 0.1.3
-generated: "2023-08-27T19:20:39.384287141+02:00"
+generated: "2023-08-27T19:35:22.298169768+02:00"
