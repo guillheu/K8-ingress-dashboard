@@ -24,6 +24,6 @@ spec:
   tls:
     - hosts:
       - {{ .Values.ingress.hostname }}
-      secretName: {{ default (printf "%s-tls" (include "ingress-hub.fullname" .)) .Values.ingress.tls.secretName }}
+      secretName: {{ default (printf "%s-tls" (include "ingress-hub.name" .)) .Values.ingress.tls.secretName }}
   {{- end }}
 {{- end }}
