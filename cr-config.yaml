@@ -1,0 +1,4 @@
+owner: guillheu
+git-repo: K8-ingress-hub
+pages-branch: main
+index-path: ./index.yaml
