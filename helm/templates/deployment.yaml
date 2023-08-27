@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "ingress-hub.fullname" . }}
+  name: {{ include "ingress-hub.name" . }}
   annotations:
 {{- toYaml .Values.deployment.annotations | nindent 4 }}
   labels:
@@ -16,7 +16,7 @@ spec:
       labels:
         app: {{ include "ingress-hub.name" . }}
     spec:
-      serviceAccountName: {{ include "ingress-hub.fullname" . }}
+      serviceAccountName: {{ include "ingress-hub.name" . }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}"
